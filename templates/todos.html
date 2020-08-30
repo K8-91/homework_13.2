@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tu tworzymy todo i widzimy listę</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='style.css') }}>
+</head>
+<body>
+<h2>CDs list</h2>
+
+<table>
+    <thead>
+    <th> ID </th>
+    <th>Artist</th>
+    <th>Year of publication</th>
+    <th>CD Name</th>
+    <th>Favourite</th>
+    <th>Delete</th>
+    </thead>
+{% for todo in todos %}
+    <tr>
+        <td><a href="/todos/edit/{{ loop.index }}">{{ todo[0] }}</a></td>
+        <td>{{ todo[1] }}</td>
+        <td>{{ todo[2] }}</td>
+        <td>{{ todo[3] }}</td>
+        <td>{{ todo[4] }}</td>
+        <td><form action = "/todos/delete/{{ id }}", method = "DELETE"><button type="button" class="deletebtn">Delete</button></form></td>
+    </tr>
+{% endfor %}
+</table>
+<div>
+    <h2> Add new CD: </h2>
+    <form method="POST" action="/todos/">
+        {{ form.hidden_tag() }}
+        <table>
+            {% for field in form if field.widget.input_type != 'hidden' %}
+                <tr>
+                    <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Go">
+    </form>
+</div>
+</body>
+</html>

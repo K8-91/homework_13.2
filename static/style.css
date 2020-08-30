@@ -1,0 +1,33 @@
+body{
+    background: bisque;
+    }
+
+table{
+    border: 1px solid purple;
+    background: pink;
+    border-collapse: collapse;
+    width: 300 px
+
+}
+
+th{
+    border: 1px solid purple;
+    style: strong;
+    height: 50 px
+
+}
+
+tr{
+    border: 1px solid purple;
+    height: 50 px;
+    width: 200 px
+}
+td{
+    border: 1px solid purple;
+    height: 50 px;
+    width: 200 px
+}
+
+.body_details{
+    background: silver
+}
