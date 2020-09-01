@@ -10,10 +10,8 @@ class Todos:
         except sqlite3.Error as e:
             print(e)
 
-
     def all(self):
         return self.todos
-
 
     def show_all(self):
         self.cur.execute("SELECT * FROM CDs")
@@ -23,14 +21,15 @@ class Todos:
 
     def show_one(self, id):
         self.cur.execute(f"SELECT * FROM CDs WHERE id ={id}")
-        row = self.cur.fetchone()
+        row = self.cur.fetchall()
         return row
 
     def insert(self, values):
         self.cur.execute('''INSERT INTO CDs(artist, year_of_publication, CD_name, my_favourite)
                          VALUES (?,?,?,?)''', values)
         self.conn.commit()
-        self.conn.close()
+
+
 
     def update(self, id, values):
         sql = f''' UPDATE CDs
@@ -42,12 +41,10 @@ class Todos:
                     WHERE id = {id}'''
         self.cur.execute(sql, values)
         self.conn.commit()
-        self.conn.close()
 
     def delete(self, id):
         self.cur.execute(f"DELETE FROM CDs where id={id}")
         self.conn.commit()
-        self.conn.close()
 
 
 

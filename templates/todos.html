@@ -24,7 +24,7 @@
         <td>{{ todo[2] }}</td>
         <td>{{ todo[3] }}</td>
         <td>{{ todo[4] }}</td>
-        <td><form action = "/todos/delete/{{ id }}", method = "DELETE"><button type="button" class="deletebtn">Delete</button></form></td>
+        <td><form method="DELETE" action = "/todos/{{ id }}"><button type="button" class="deletebtn">Delete</button></form></td>
     </tr>
 {% endfor %}
 </table>
