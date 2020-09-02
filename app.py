@@ -22,9 +22,9 @@ def todos_list():
     return render_template("todos.html", form=form, todos=todos.show_all(), error=error)
 
 
-@app.route("/todos/edit/<int:id>/", methods=["GET", "POST"])
-def todo_edit(id):
-    todo = todos.show_one(id-1)
+@app.route("/todos/edit/<int:todo_id>/", methods=["GET", "POST"])
+def todo_edit(todo_id):
+    todo = todos.show_one(todo_id-1)
     form = TodoForm(data=todo)
     if request.method == "POST":
         if form.validate_on_submit():
@@ -32,9 +32,9 @@ def todo_edit(id):
             for value in form.data.values():
                 values.append(value)
             how_many = len(values)
-        todos.update(id, (values[:how_many - 1]))
+        todos.update(todo_id-1, (values[:how_many - 1]))
         return redirect(url_for("todos_list"))
-    return render_template("todo_id.html", form=form, id=id)
+    return render_template("todo_id.html", form=form, todo_id=todo_id)
 
 
 @app.route("/todos/<int:id>/", methods=["DELETE"])
